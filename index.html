@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ARINC 429 - Envío de datos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Panel ARINC 429</h1>
+
+        <!-- selección de instrumentos -->
+        <label>Instrumento:</label>
+        <select id="instrumento">
+            <option value="altimetro">Altímetro</option>
+            <option value="anemometro">Anemómetro (Velocidad)</option>
+            <option value="hsi">HSI – Indicador de Situación Horizontal</option>
+            <option value="adi">ADI – Artificial Horizon</option>
+            <option value="compas">Brújula (Gyro Compass)</option>
+            <option value="gps">GPS</option>
+            <option value="vor">VOR</option>
+            <option value="ils">ILS</option>
+            <option value="dme">DME</option>
+            <option value="transponder">Transponder</option>
+        </select>
+
+        <!-- campo de medida -->
+        <label>Medida a enviar:</label>
+        <input type="number" id="medida" placeholder="Ingrese valor">
+
+        <!-- botón para enviar -->
+        <button class="btn" onclick="enviarDato()">Enviar</button>
+
+        <!-- salida del sistema -->
+        <p id="resultado"></p>
+
+        <a href="presentacion.html" class="volver">Volver a Presentación</a>
+    </div>
+
+    <script>
+        function enviarDato() {
+            const instrumento = document.getElementById("instrumento").value;
+            const medida = document.getElementById("medida").value;
+
+            if (medida === "") {
+                document.getElementById("resultado").textContent =
+                    "⚠️ Ingrese un valor antes de enviar.";
+                return;
+            }
+
+            document.getElementById("resultado").textContent =
+                `✅ Dato enviado al servidor:
+                Instrumento: ${instrumento}
+                Medida: ${medida}`;
+        }
+    </script>
+
+</body>
+</html>
